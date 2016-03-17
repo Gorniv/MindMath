@@ -9,12 +9,19 @@ namespace MindMath
 {
     public class Triangle
     {
+        /// <summary>
+        /// Вычисление площади прямоугольного треугольника
+        /// </summary>
+        /// <param name="a">Длина одной из сторон</param>
+        /// <param name="b">Длина одной из сторон</param>
+        /// <param name="c">Длина одной из сторон</param>
+        /// <returns>Площадь</returns>
         public static double RightAngleArea(double a, double b, double c)
         {
             if (a <= 0 || b <= 0 || c <= 0)
                 throw new ZeroLenght();
 
-            if (_powSumm(a, b, c) || _powSumm(b, c, a) || _powSumm(c, b, a))
+            if (!_rightAngleTriangle(a, b, c) && !_rightAngleTriangle(b, c, a) && !_rightAngleTriangle(c, b, a))
                 throw new BadLenght();
 
             var p = (a + b + c) / 2;
@@ -22,7 +29,7 @@ namespace MindMath
             return s;
         }
 
-        private static bool _powSumm(double a, double b, double c)
+        private static bool _rightAngleTriangle(double a, double b, double c)
         {
             return Math.Abs(Math.Pow(c, 2) - (Math.Pow(a, 2) + Math.Pow(b, 2))) < 0.00001;
         }
